@@ -2,9 +2,9 @@
 
 namespace JhumanJ\LaravelSignedAuthMiddleware;
 
+use JhumanJ\LaravelSignedAuthMiddleware\Commands\LaravelSignedAuthMiddlewareCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use JhumanJ\LaravelSignedAuthMiddleware\Commands\LaravelSignedAuthMiddlewareCommand;
 
 class LaravelSignedAuthMiddlewareServiceProvider extends PackageServiceProvider
 {
