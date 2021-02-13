@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace JhumanJ\LaravelSignedAuthMiddleware\Tests;
 
 class ExampleTest extends TestCase
 {

@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "jhumanj/laravel-signed-auth-middleware",
+    "description": "A Laravel package that can authenticate users using signed links",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "jhumanj",
+        "laravel-signed-auth-middleware"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/jhumanj/laravel-signed-auth-middleware",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "JhumanJ",
+            "email": "julien@nahum.net",
             "role": "Developer"
         }
     ],
@@ -27,13 +27,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "JhumanJ\\LaravelSignedAuthMiddleware\\": "src",
+            "JhumanJ\\LaravelSignedAuthMiddleware\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "JhumanJ\\LaravelSignedAuthMiddleware\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "JhumanJ\\LaravelSignedAuthMiddleware\\LaravelSignedAuthMiddlewareServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "LaravelSignedAuthMiddleware": "JhumanJ\\LaravelSignedAuthMiddleware\\LaravelSignedAuthMiddlewareFacade"
             }
         }
     },
