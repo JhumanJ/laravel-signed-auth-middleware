@@ -55,7 +55,7 @@ class SignedAuth
             return $url;
         } else if ($this->expires == null) {
             // Default expire
-            $this->expires = now()->addMinutes( config('laravel-signed-auth-middleware.login_route_expires'));
+            $this->expires = now()->addMinutes(config('laravel-signed-auth-middleware.login_route_expires'));
         }
 
         return URL::temporarySignedRoute(
