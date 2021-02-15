@@ -10,7 +10,6 @@ use JhumanJ\LaravelSignedAuthMiddleware\Exceptions\InvalidSignatureException;
 
 class SignedAuthMiddleware
 {
-
     private $urlGenerator;
 
     public function __construct(UrlGenerator $urlGenerator)
@@ -30,9 +29,9 @@ class SignedAuthMiddleware
     {
         if ($this->isSignedAuthRequest($request)) {
             // Validate link
-            if (!$this->urlGenerator->hasCorrectSignature($request)) {
+            if (! $this->urlGenerator->hasCorrectSignature($request)) {
                 throw new InvalidSignatureException();
-            } else if (!$this->urlGenerator->signatureHasNotExpired($request)) {
+            } elseif (! $this->urlGenerator->signatureHasNotExpired($request)) {
                 throw new ExpiredSignatureException();
             }
 

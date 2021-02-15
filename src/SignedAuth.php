@@ -20,18 +20,21 @@ class SignedAuth
     public function forUser(User $user)
     {
         $this->user = $user;
+
         return $this;
     }
 
     public function expires($minutes = null)
     {
         $this->expires = now()->addMinutes($minutes ?? config('laravel-signed-auth-middleware.login_route_expires'));
+
         return $this;
     }
 
     public function neverExpires()
     {
         $this->expires = self::NEVER_EXPIRES;
+
         return $this;
     }
 
@@ -40,6 +43,7 @@ class SignedAuth
         $this->routeName = $name;
         $this->routeParams = $params;
         $this->routeAbsolute = $absolute;
+
         return $this;
     }
 
@@ -51,9 +55,11 @@ class SignedAuth
                 array_merge(
                     $this->routeParams,
                     $this->getMandatoryParams()
-                ));
+                )
+            );
+
             return $url;
-        } else if ($this->expires == null) {
+        } elseif ($this->expires == null) {
             // Default expire
             $this->expires = now()->addMinutes(config('laravel-signed-auth-middleware.login_route_expires'));
         }

@@ -2,12 +2,12 @@
 
 namespace JhumanJ\LaravelSignedAuthMiddleware\Tests;
 
+use Illuminate\Support\Str;
 use JhumanJ\LaravelSignedAuthMiddleware\Exceptions\ExpiredSignatureException;
 use JhumanJ\LaravelSignedAuthMiddleware\Exceptions\InvalidSignatureException;
+use JhumanJ\LaravelSignedAuthMiddleware\Facades\SignedAuth;
 use JhumanJ\LaravelSignedAuthMiddleware\SignedAuthMiddleware;
 use JhumanJ\LaravelSignedAuthMiddleware\Tests\Models\User;
-use Illuminate\Support\Str;
-use JhumanJ\LaravelSignedAuthMiddleware\Facades\SignedAuth;
 
 class SignedAuthTest extends TestCase
 {
@@ -95,7 +95,7 @@ class SignedAuthTest extends TestCase
             ->route('hello')
             ->generate();
 
-        $this->assertFalse(str_contains($signedAuthUrl,'expires'));
+        $this->assertFalse(str_contains($signedAuthUrl, 'expires'));
         $response = $this->get($signedAuthUrl);
         $response->assertSuccessful();
         $response->assertSee('hello world');
