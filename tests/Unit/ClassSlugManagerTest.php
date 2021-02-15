@@ -2,11 +2,7 @@
 
 namespace JhumanJ\LaravelSignedAuthMiddleware\Tests\Unit;
 
-use Grosv\LaravelPasswordlessLogin\UserClass;
 use JhumanJ\LaravelSignedAuthMiddleware\ClassSlugManager;
-use JhumanJ\LaravelSignedAuthMiddleware\Tests\Models\User;
-use Illuminate\Support\Str;
-use JhumanJ\LaravelSignedAuthMiddleware\Facades\SignedAuth;
 use JhumanJ\LaravelSignedAuthMiddleware\Tests\TestCase;
 
 class ClassSlugManagerTest extends TestCase

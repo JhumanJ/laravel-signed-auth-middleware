@@ -2,12 +2,12 @@
 
 namespace JhumanJ\LaravelSignedAuthMiddleware\Tests;
 
+use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Support\Facades\Config;
-use Orchestra\Testbench\TestCase as Orchestra;
 use JhumanJ\LaravelSignedAuthMiddleware\SignedAuthMiddlewareServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -33,7 +33,8 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function setupConfig() {
+    protected function setupConfig()
+    {
         Config::set('laravel-signed-auth-middleware.signature_param_name', 'auth-signature');
     }
 
