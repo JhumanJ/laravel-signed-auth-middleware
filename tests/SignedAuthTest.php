@@ -123,12 +123,12 @@ class SignedAuthTest extends TestCase
         $this->withoutExceptionHandling();
         $this->assertGuest();
         $signedAuthUrl = SignedAuth::forUser($this->user)
-            ->route('hello',[
-                'utm_stupid' => 'tracked'
+            ->route('hello', [
+                'utm_stupid' => 'tracked',
             ])
             ->generate();
 
-        $this->assertTrue(str_contains($signedAuthUrl,"utm_stupid=tracked"));
+        $this->assertTrue(str_contains($signedAuthUrl, "utm_stupid=tracked"));
         $response = $this->get($signedAuthUrl);
         $response->assertSuccessful();
         $response->assertSee('hello world');

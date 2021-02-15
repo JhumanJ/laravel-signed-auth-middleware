@@ -2,7 +2,6 @@
 
 namespace JhumanJ\LaravelSignedAuthMiddleware;
 
-use Illuminate\Foundation\Http\Kernel;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
