@@ -6,7 +6,7 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use JhumanJ\LaravelSignedAuthMiddleware\Commands\LaravelSignedAuthMiddlewareCommand;
 
-class LaravelSignedAuthMiddlewareServiceProvider extends PackageServiceProvider
+class SignedAuthMiddlewareServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -17,9 +17,15 @@ class LaravelSignedAuthMiddlewareServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-signed-auth-middleware')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel_signed_auth_middleware_table')
-            ->hasCommand(LaravelSignedAuthMiddlewareCommand::class);
+            ->hasConfigFile('config');
     }
+
+    public function registeringPackage()
+    {
+        $this->app->singleton('laravel-signed-auth', function ($app) {
+            return new SignedAuth();
+        });
+    }
+
+
 }

@@ -3,8 +3,11 @@
 namespace JhumanJ\LaravelSignedAuthMiddleware\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Capsule\Manager as DB;
+use Illuminate\Support\Facades\Config;
 use Orchestra\Testbench\TestCase as Orchestra;
-use JhumanJ\LaravelSignedAuthMiddleware\LaravelSignedAuthMiddlewareServiceProvider;
+use JhumanJ\LaravelSignedAuthMiddleware\SignedAuthMiddlewareServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -12,15 +15,51 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
+
+        $db = new DB();
+        $db->addConnection([
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
+        $db->setAsGlobal();
+        $db->bootEloquent();
+
+        $this->migrate();
+        $this->setupConfig();
+
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'JhumanJ\\LaravelSignedAuthMiddleware\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
+    protected function setupConfig() {
+        Config::set('laravel-signed-auth-middleware.signature_param_name', 'auth-signature');
+    }
+
+    /**
+     * Migrate the database.
+     *
+     * @return void
+     */
+    protected function migrate()
+    {
+        DB::schema()->dropAllTables();
+
+        DB::schema()->create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
+
     protected function getPackageProviders($app)
     {
         return [
-            LaravelSignedAuthMiddlewareServiceProvider::class,
+            SignedAuthMiddlewareServiceProvider::class,
         ];
     }
 

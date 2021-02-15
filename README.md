@@ -5,7 +5,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/jhumanj/laravel-signed-auth-middleware/Check%20&%20fix%20styling?label=code%20style)](https://github.com/jhumanj/laravel-signed-auth-middleware/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/jhumanj/laravel-signed-auth-middleware.svg?style=flat-square)](https://packagist.org/packages/jhumanj/laravel-signed-auth-middleware)
 
-
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Support us
