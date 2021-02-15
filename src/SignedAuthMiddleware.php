@@ -61,6 +61,7 @@ class SignedAuthMiddleware
     {
         ray(config('signed-auth-middleware.signature_param_name'));
         ray($request);
+
         return $request->has(config('signed-auth-middleware.signature_param_name')) &&
             $request->get(config('signed-auth-middleware.signature_param_name'));
     }
