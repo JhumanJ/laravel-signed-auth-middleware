@@ -35,7 +35,7 @@ class TestCase extends Orchestra
 
     protected function setupConfig()
     {
-        Config::set('laravel-signed-auth-middleware.signature_param_name', 'auth-signature');
+        Config::set('signed-auth-middleware.signature_param_name', 'auth-signature');
     }
 
     /**
@@ -52,6 +52,7 @@ class TestCase extends Orchestra
             $table->string('name');
             $table->string('email');
             $table->string('password');
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });

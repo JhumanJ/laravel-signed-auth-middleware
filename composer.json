@@ -28,8 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "JhumanJ\\LaravelSignedAuthMiddleware\\": "src",
-            "JhumanJ\\LaravelSignedAuthMiddleware\\Database\\Factories\\": "database/factories"
+            "JhumanJ\\LaravelSignedAuthMiddleware\\": "src"
         }
     },
     "autoload-dev": {
@@ -48,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SignedAuthMiddlewareServiceProvider"
+                "JhumanJ\\LaravelSignedAuthMiddleware\\SignedAuthMiddlewareServiceProvider"
             ],
             "aliases": {
-                "LaravelSignedAuthMiddleware": "SignedAuthMiddlewareFacade"
+                "SignedAuth": "JhumanJ\\LaravelSignedAuthMiddleware\\Facades\\SignedAuth"
             }
         }
     },

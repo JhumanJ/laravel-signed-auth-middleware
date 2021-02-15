@@ -26,7 +26,7 @@ class SignedAuth
 
     public function expires($minutes = null)
     {
-        $this->expires = now()->addMinutes($minutes ?? config('laravel-signed-auth-middleware.login_route_expires'));
+        $this->expires = now()->addMinutes($minutes ?? config('signed-auth-middleware.default_expire'));
 
         return $this;
     }
@@ -61,7 +61,7 @@ class SignedAuth
             return $url;
         } elseif ($this->expires == null) {
             // Default expire
-            $this->expires = now()->addMinutes(config('laravel-signed-auth-middleware.login_route_expires'));
+            $this->expires = now()->addMinutes(config('signed-auth-middleware.default_expire'));
         }
 
         return URL::temporarySignedRoute(
@@ -78,7 +78,7 @@ class SignedAuth
     private function getMandatoryParams()
     {
         return [
-            config('laravel-signed-auth-middleware.signature_param_name') => true,
+            config('signed-auth-middleware.signature_param_name') => true,
             'uid' => $this->user->getAuthIdentifier(),
             'utype' => ClassSlugManager::toSlug(get_class($this->user)),
         ];

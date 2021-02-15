@@ -3,6 +3,7 @@
 namespace JhumanJ\LaravelSignedAuthMiddleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Auth;
 use JhumanJ\LaravelSignedAuthMiddleware\Exceptions\ExpiredSignatureException;
@@ -37,8 +38,8 @@ class SignedAuthMiddleware
 
             // Auth user
             $user = $this->getUser($request);
-            $guard = $user->guard_name ?? config('laravel-signed-auth-middleware.user_guard');
-            $rememberLogin = $user->should_remember_login ?? config('laravel-signed-auth-middleware.remember_login');
+            $guard = $user->guard_name ?? config('signed-auth-middleware.user_guard');
+            $rememberLogin = $user->should_remember_login ?? config('signed-auth-middleware.remember_login');
 
             if (method_exists(Auth::guard($guard), 'login')) {
                 Auth::guard($guard)->login($user, $rememberLogin);
@@ -51,14 +52,16 @@ class SignedAuthMiddleware
 
     private function getUser($request)
     {
-        return Auth::guard(config('laravel-signed-auth-middleware.user_guard'))
+        return Auth::guard(config('signed-auth-middleware.user_guard'))
             ->getProvider()
             ->retrieveById($request->get('uid'));
     }
 
-    private function isSignedAuthRequest($request)
+    private function isSignedAuthRequest(Request $request)
     {
-        return $request->has(config('laravel-signed-auth-middleware.signature_param_name')) &&
-            $request->get(config('laravel-signed-auth-middleware.signature_param_name'));
+        ray(config('signed-auth-middleware.signature_param_name'));
+        ray($request);
+        return $request->has(config('signed-auth-middleware.signature_param_name')) &&
+            $request->get(config('signed-auth-middleware.signature_param_name'));
     }
 }

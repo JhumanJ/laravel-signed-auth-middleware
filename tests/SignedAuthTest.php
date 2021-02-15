@@ -116,4 +116,23 @@ class SignedAuthTest extends TestCase
         $this->expectException(ExpiredSignatureException::class);
         $this->get($signedAuthUrl);
     }
+
+    /** @test */
+    public function test_signed_auth_request_with_custom_params()
+    {
+        $this->withoutExceptionHandling();
+        $this->assertGuest();
+        $signedAuthUrl = SignedAuth::forUser($this->user)
+            ->route('hello',[
+                'utm_stupid' => 'tracked'
+            ])
+            ->generate();
+
+        $this->assertTrue(str_contains($signedAuthUrl,"utm_stupid=tracked"));
+        $response = $this->get($signedAuthUrl);
+        $response->assertSuccessful();
+        $response->assertSee('hello world');
+
+        $this->assertAuthenticatedAs($this->user);
+    }
 }
